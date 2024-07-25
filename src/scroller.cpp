@@ -715,7 +715,11 @@ public:
         StandardSize height = active->data()->get_height();
         if (height == StandardSize::Free) {
             // When cycle-resizing from Free mode, always move back to first
-            height = window_heights.get_default();
+            if(gap_x.size()==1){
+                height = StandardSize::One;
+            }else{
+                height = window_heights.get_default();
+            }
         } else {
             height = window_heights.get_next(height, step);
         }
